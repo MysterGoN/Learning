@@ -1,0 +1,3 @@
+<?
+    echo "Ya sdelal eto!!!";
+?>
