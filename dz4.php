@@ -24,6 +24,17 @@ $bd=  parse_ini_string($ini_string, true);
 function tab() {
     return "&nbsp&nbsp&nbsp&nbsp";
 }
+function productSuffix($value) {
+    switch ($value) {
+        case 1:
+            return 'товара';
+            break;
+        
+        default:
+            return 'товаров';
+            break;
+    }
+}
 function name($key) {
     switch ($key) {
         case 'цена':
@@ -133,7 +144,8 @@ function totalPrice($price = 0, $return = false) {
 function notification($value) {
     if ($value['количество заказано'] > $value['осталось на складе']) {
         echo td('Из требуемых ' . $value['количество заказано'] 
-                . ' товаров на складе осталось ' 
+                . ' ' . productSuffix($value['количество заказано']) 
+                . ' на складе осталось ' 
                 . $value['осталось на складе']);
     } else {
         echo td("&nbsp");
