@@ -2,19 +2,18 @@
 session_start();
     
 if (isset($_GET['delete'])) {
-    unset($_SESSION[$_GET['did']]);
+    unset($_SESSION[$_GET['delete']]);
     unset($_GET['delete']);
-    unset($_GET['did']);
 }
-    $private = $_POST['private'];
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $allow_mails = $_POST['allow_mails'];
-    $phone = $_POST['phone'];
-    $city = $_POST['city'];
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $price = $_POST['price'];
+    $private = htmlentities($_POST['private']);
+    $name = htmlentities($_POST['name']);
+    $email = htmlentities($_POST['email']);
+    $allow_mails = htmlentities($_POST['allow_mails']);
+    $phone = htmlentities($_POST['phone']);
+    $city = htmlentities($_POST['city']);
+    $title = htmlentities($_POST['title']);
+    $description = htmlentities($_POST['description']);
+    $price = (int)htmlentities($_POST['price']);
     
     if (empty($_SESSION['count'])) {
        $_SESSION['count'] = 1;
@@ -24,7 +23,16 @@ if (isset($_GET['delete'])) {
         }
     }
     if (isset($_POST['submit'])) {
-        $_SESSION['ball' . $_SESSION['count']] = array('private' => $private, 'name' => $name, 'email' => $email, 'allow_mails' => $allow_mails, 'phone' => $phone, 'city' => $city, 'title' => $title, 'description' => $description, 'price' => $price);
+        if (isset($_GET['id'])) {
+            $_SESSION[$_GET['id']] = array('private' => $private, 'name' => $name, 'email' => $email, 'allow_mails' => $allow_mails, 'phone' => $phone, 'city' => $city, 'title' => $title, 'description' => $description, 'price' => $price);
+        }else{
+            $_SESSION['ball' . $_SESSION['count']] = array('private' => $private, 'name' => $name, 'email' => $email, 'allow_mails' => $allow_mails, 'phone' => $phone, 'city' => $city, 'title' => $title, 'description' => $description, 'price' => $price);
+        }
+    }
+    
+    if (isset($_POST['reset'])) {
+        header('Location: dz6.php');
+        echo 'blabla';
     }
     
     $citys = array('641780' => 'Новосибирск', 
@@ -105,18 +113,16 @@ if (isset($_GET['delete'])) {
         </tr>
     </table>
     <input type="submit" value="Подтвердить" name="submit">
+    <input type="submit" value="Очистить" name="reset">
 </form>
 <?php
-    echo "<pre>";
-    //print_r($_SESSION);
-    echo "</pre>";
     echo  "<br>";
     echo  "<br>";
     foreach ($_SESSION as $key => $value) {
         if ($key == 'ball1' || $key == 'count') {
             continue;
         }
-        echo "<a  href='?id=" . $key . "'>" . $value['title']. "</a>" . ' | ' . $value['price'] . ' | ' . $value['name']. ' | ' . "<a  href='?delete=true&did=". $key ."'>удалить</a><br>";
+        echo "<a  href='?id=" . $key . "'>" . $value['title']. "</a>" . ' | ' . $value['price'] . ' | ' . $value['name']. ' | ' . "<a  href='?delete=". $key ."'>удалить</a><br>";
     }
         
 ?>
