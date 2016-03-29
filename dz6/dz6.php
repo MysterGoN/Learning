@@ -32,7 +32,6 @@ if (isset($_GET['delete'])) {
     
     if (isset($_POST['reset'])) {
         header('Location: dz6.php');
-        echo 'blabla';
     }
     
     $citys = array('641780' => 'Новосибирск', 
@@ -115,9 +114,9 @@ if (isset($_GET['delete'])) {
     <input type="submit" value="Подтвердить" name="submit">
     <input type="submit" value="Очистить" name="reset">
 </form>
+<br>
+<br>
 <?php
-    echo  "<br>";
-    echo  "<br>";
     foreach ($_SESSION as $key => $value) {
         if ($key == 'ball1' || $key == 'count') {
             continue;
