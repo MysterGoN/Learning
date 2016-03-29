@@ -30,10 +30,6 @@ if (isset($_GET['delete'])) {
         }
     }
     
-    if (isset($_POST['reset'])) {
-        header('Location: dz6.php');
-    }
-    
     $citys = array('641780' => 'Новосибирск', 
                    '641490' => 'Барабинск', 
                    '641510' => 'Бердск',
@@ -112,7 +108,7 @@ if (isset($_GET['delete'])) {
         </tr>
     </table>
     <input type="submit" value="Подтвердить" name="submit">
-    <input type="submit" value="Очистить" name="reset">
+    <button type="button" name="reset" onclick="location.href='dz6.php'">Очистить</button>
 </form>
 <br>
 <br>
