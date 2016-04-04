@@ -8,7 +8,7 @@ if (isset($_GET['delete'])) {
     $private = htmlentities($_POST['private']);
     $name = htmlentities($_POST['name']);
     $email = htmlentities($_POST['email']);
-    $allow_mails = htmlentities($_POST['allow_mails']);
+    $allow_mail = htmlentities($_POST['allow_mails']);
     $phone = htmlentities($_POST['phone']);
     $city = htmlentities($_POST['city']);
     $title = htmlentities($_POST['title']);
@@ -24,7 +24,7 @@ if (isset($_GET['delete'])) {
     }
     if (isset($_POST['submit'])) {
         if (isset($_GET['id'])) {
-            $_SESSION[$_GET['id']] = array('private' => $private, 'name' => $name, 'email' => $email, 'allow_mails' => $allow_mails, 'phone' => $phone, 'city' => $city, 'title' => $title, 'description' => $description, 'price' => $price);
+            $_SESSION[$_GET['id']] = array('private' => $private, 'name' => $name, 'email' => $email, 'allow_mails' => $allow_mail, 'phone' => $phone, 'city' => $city, 'title' => $title, 'description' => $description, 'price' => $price);
         }else{
             $_SESSION['ball' . $_SESSION['count']] = array('private' => $private, 'name' => $name, 'email' => $email, 'allow_mails' => $allow_mails, 'phone' => $phone, 'city' => $city, 'title' => $title, 'description' => $description, 'price' => $price);
         }

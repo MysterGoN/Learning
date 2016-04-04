@@ -1,6 +1,4 @@
-<?php
-    $filename = 'list.txt';
-    
+<?php    
     if (!file_exists($filename)) {
         $f = fopen($filename, 'w');
         fclose($f);
@@ -45,8 +43,16 @@
     
     function readMyFile($file) {
         $f = file($file);
+        $arr = array();
         foreach ($f as $key => $value1) {
             $value = unserialize($value1);
-            echo $value['title'] . ' | ' . $value['price'] . ' | ' . $value['name']. ' | ' . "<a  href='?id=" . $key . "'>редактировать</a> " . "<a  href='?delete=". $key ."'>удалить</a><br>";
+            $edit = "<a  href='?id=" . $key . "'>редактировать</a> ";
+            $delete = "<a  href='?delete=". $key ."'>удалить</a><br>";
+            $arr[] = $value['title'];
+            $arr[] = $value['price'];
+            $arr[] = $value['name'];
+            $arr[] = $edit;
+            $arr[] =  $delete;
         }
+        return $arr;
     }
