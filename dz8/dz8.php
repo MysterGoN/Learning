@@ -23,22 +23,30 @@
 
     if (isset($_POST['submit'])) {
         $arr = array('private' => $private, 
-                     'name' => $name, 
-                     'email' => $email, 
-                     'allow_mails' => $allow_mail, 
-                     'phone' => $phone, 
-                     'city' => $city, 
-                     'ad' => $ad, 
-                     'title' => $title, 
-                     'description' => $description, 
-                     'price' => $price);
+                         'name' => $name, 
+                         'email' => $email, 
+                         'allow_mails' => $allow_mail, 
+                         'phone' => $phone, 
+                         'city' => $city, 
+                         'ad' => $ad, 
+                         'title' => $title, 
+                         'description' => $description, 
+                         'price' => $price);
         
-        if (isset($_GET['id'])) {
-            editFileLine($filename, $arr, $_GET['id']);
+        if (empty($name) || empty($title) || empty($price)) {
+            if (empty($name)){$smarty->assign('error_name', true);}
+            if (empty($title)) {$smarty->assign('error_title', true);}
+            if (empty($price)) {$smarty->assign('error_price', true);}
+            $smarty->assign('error', 'Пожалуйста заполните поле');
+            $smarty->assign('arr', $arr);
         }else{
-            addToEndFile($filename, $arr);
-        }
-        header('Location: ' . $currentFile);
+            if (isset($_GET['id'])) {
+                editFileLine($filename, $arr, $_GET['id']);
+            }else{
+                addToEndFile($filename, $arr);
+            }
+            header('Location: ' . $currentFile);
+        }     
     }
     
     if (isset($_GET['id'])) {

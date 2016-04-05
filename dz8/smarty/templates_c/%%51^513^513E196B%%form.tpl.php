@@ -1,20 +1,22 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-04-04 13:03:28
+<?php /* Smarty version 2.6.25-dev, created on 2016-04-05 16:55:43
          compiled from form.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios', 'form.tpl', 6, false),array('function', 'html_checkboxes', 'form.tpl', 19, false),array('function', 'html_options', 'form.tpl', 31, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios', 'form.tpl', 5, false),array('function', 'html_checkboxes', 'form.tpl', 20, false),array('function', 'html_options', 'form.tpl', 32, false),)), $this); ?>
 <form  method="post">  
     <table>
         <tr>
             <td></td>
-            <td>
-                <?php echo smarty_function_html_radios(array('name' => 'private','options' => $this->_tpl_vars['privates'],'selected' => $this->_tpl_vars['arr']['private']), $this);?>
-
-            </td>
+            <td><?php echo smarty_function_html_radios(array('name' => 'private','options' => $this->_tpl_vars['privates'],'selected' => $this->_tpl_vars['arr']['private']), $this);?>
+</td>
         </tr>
         <tr>
             <td><label>Ваше имя</label></td>
-            <td><input type="text" maxlength="40" value="<?php echo $this->_tpl_vars['arr']['name']; ?>
-" name="name"></td>
+            <td>
+                <input type="text" maxlength="40" value="<?php echo $this->_tpl_vars['arr']['name']; ?>
+" name="name">
+                <?php if ($this->_tpl_vars['error_name']): ?><font color="red"><?php echo $this->_tpl_vars['error']; ?>
+</font><?php endif; ?>
+            </td>
         </tr>
         <tr>
             <td><label>Электронная почта</label></td>
@@ -54,8 +56,12 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios
         </tr>
         <tr>
             <td><label>Название объявления</label></td>
-            <td><input type="text" maxlength="50" value="<?php echo $this->_tpl_vars['arr']['title']; ?>
-" name="title"></td>
+            <td>
+                <input type="text" maxlength="50" value="<?php echo $this->_tpl_vars['arr']['title']; ?>
+" name="title">
+                <?php if ($this->_tpl_vars['error_title']): ?><font color="red"><?php echo $this->_tpl_vars['error']; ?>
+</font><?php endif; ?>
+            </td>
         </tr>
         <tr>
             <td><label>Описание объявления</label></td>
@@ -64,8 +70,12 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios
         </tr>
         <tr>
             <td><label>Цена</label></td>
-            <td><input type="text" maxlength="9" value="<?php echo $this->_tpl_vars['arr']['price']; ?>
-" name="price">&nbsp;<span>руб.</span> </td>
+            <td>
+                <input type="text" maxlength="9" value="<?php echo $this->_tpl_vars['arr']['price']; ?>
+" name="price">&nbsp;<span>руб.</span>
+                <?php if ($this->_tpl_vars['error_price']): ?><font color="red"><?php echo $this->_tpl_vars['error']; ?>
+</font><?php endif; ?>
+            </td>
         </tr>
     </table>
     <input type="submit" value="Подтвердить" name="submit">

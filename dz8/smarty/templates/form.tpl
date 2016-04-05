@@ -6,7 +6,10 @@
         </tr>
         <tr>
             <td><label>Ваше имя</label></td>
-            <td><input type="text" maxlength="40" value="{$arr.name}" name="name"></td>
+            <td>
+                <input type="text" maxlength="40" value="{$arr.name}" name="name">
+                {if $error_name}<font color="red">{$error}</font>{/if}
+            </td>
         </tr>
         <tr>
             <td><label>Электронная почта</label></td>
@@ -41,7 +44,10 @@
         </tr>
         <tr>
             <td><label>Название объявления</label></td>
-            <td><input type="text" maxlength="50" value="{$arr.title}" name="title"></td>
+            <td>
+                <input type="text" maxlength="50" value="{$arr.title}" name="title">
+                {if $error_title}<font color="red">{$error}</font>{/if}
+            </td>
         </tr>
         <tr>
             <td><label>Описание объявления</label></td>
@@ -49,7 +55,10 @@
         </tr>
         <tr>
             <td><label>Цена</label></td>
-            <td><input type="text" maxlength="9" value="{$arr.price}" name="price">&nbsp;<span>руб.</span> </td>
+            <td>
+                <input type="text" maxlength="9" value="{$arr.price}" name="price">&nbsp;<span>руб.</span>
+                {if $error_price}<font color="red">{$error}</font>{/if}
+            </td>
         </tr>
     </table>
     <input type="submit" value="Подтвердить" name="submit">

@@ -3,16 +3,16 @@
     $smarty->assign('currentFile', $currentFile);
 
     $filename = 'list.txt';
-    $private = htmlentities($_POST['private']);
-    $name = htmlentities($_POST['name']);
-    $email = htmlentities($_POST['email']);
-    $allow_mail = htmlentities($_POST['allow_mails'][0]);
-    $phone = htmlentities($_POST['phone']);
-    $city = htmlentities($_POST['city']);
-    $ad = htmlentities($_POST['ad_category']);
-    $title = htmlentities($_POST['title']);
-    $description = htmlentities($_POST['description']);
-    $price = (int)htmlentities($_POST['price']);
+    $private = htmlentities(ltrim($_POST['private']));
+    $name = htmlentities(ltrim($_POST['name']));
+    $email = htmlentities(ltrim($_POST['email']));
+    $allow_mail = htmlentities(ltrim($_POST['allow_mails'][0]));
+    $phone = htmlentities(ltrim($_POST['phone']));
+    $city = htmlentities(ltrim($_POST['city']));
+    $ad = htmlentities(ltrim($_POST['ad_category']));
+    $title = htmlentities(ltrim($_POST['title']));
+    $description = htmlentities(ltrim($_POST['description']));
+    $price = (int)htmlentities(ltrim($_POST['price']));
 
     $smarty->assign('citys', array('641780' => 'Новосибирск', 
                                    '641490' => 'Барабинск', 
