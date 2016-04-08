@@ -1,0 +1,1 @@
+{html_table loop=$data_list cols=5 table_attr='border="0"'}

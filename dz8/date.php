@@ -2,6 +2,10 @@
     $currentFile = 'http://' . $_SERVER['HTTP_HOST']. $_SERVER['PHP_SELF'];
     $smarty->assign('currentFile', $currentFile);
 
+    //
+    //СДЕЛАТЬ ЧЕРЕЗ foreach
+    //
+    
     $filename = 'list.txt';
     $private = htmlentities(ltrim($_POST['private']));
     $name = htmlentities(ltrim($_POST['name']));
