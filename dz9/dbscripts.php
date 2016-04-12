@@ -25,7 +25,7 @@
             $date[] = $row[price];
             $date[] = $row[name];
             $date[] = $edit;
-            $date[] =  $delete;
+            $date[] = $delete;
         }
         return $date;
     }
