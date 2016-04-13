@@ -1,12 +1,8 @@
 <?php
     session_start();
-//    include('debugging.php');
-//    pre($_POST);
-//    pre($_FILES);
 
     if (isset($_POST['install'])) {
-        
-        if (!$conn = mysql_connect($_POST['server_name'], $_POST['username'], $_POST['password'])) {
+        if (!$conn = mysql_connect($_POST['server_name'], $_POST['user_name'], $_POST['password'])) {
             die('Невозможно установить соединение!');
         }
         if(mysql_select_db($_POST['database'])){
@@ -48,8 +44,8 @@
         }
         header('Location: index.php');
     }
-    
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +57,7 @@
         <p><label>Server name:</label><br>
         <input type="text" name='server_name'></p>
         <p><label>User name</label><br>
-        <input type="text" name='username'></p>
+        <input type="text" name='user_name'></p>
         <p><label>Password:</label><br>
         <input type="password" name='password'></p>
         <p><label>Database:</label><br>

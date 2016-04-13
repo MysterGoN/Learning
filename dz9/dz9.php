@@ -14,10 +14,15 @@
     $smarty->cache_dir = $smarty_dir . 'cache';
     $smarty->config_dir = $smarty_dir . 'configs';
     
+    
+    
     include 'dbscripts.php';
-    include 'connect.php';
-    include 'date.php';
+    include 'data_connection.php';
+    connectToDb($server_name, $user_name, $password, $database);
+    include 'data.php';
 
+    
+    
     if (isset($_GET['delete'])) {   
         deleteAd($_GET['delete']);
         unset($_GET['delete']);

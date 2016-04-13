@@ -1,4 +1,15 @@
 <?php
+    
+    function connectToDb($server_name, $user_name, $password, $database) {
+        $conn = mysql_connect($server_name, $user_name, $password) 
+            or die('Невозможно установить соединение: '. mysql_error());
+    
+        mysql_select_db($database) 
+            or die('Не удалось выбрать базу данных');
+    
+        mysql_query("SET NAMES utf8");
+    }
+    
     function takeAd($id) {
         $result = mysql_query('select * from ads where ads.id = ' . $id);
         $row = mysql_fetch_assoc($result);

@@ -17,7 +17,7 @@
         </tr>
         <tr>
             <td></td>
-            <td>{html_checkboxes name="allow_mails" options=$allow_mails selected=$arr.allow_mails}</td>
+            <td>{html_checkboxes name="allow_mail" options=$allow_mail selected=$arr.allow_mail}</td>
         </tr>
         <tr>
             <td><label>Номер телефона</label></td>

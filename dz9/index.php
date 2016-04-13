@@ -1,7 +1,7 @@
 <?php
 	session_start();
-	if (isset($_SESSION['dbinstall'])) {
-		header('Location: dz9.php');
+	if (file_exists('data_connection.php')) {
+            header('Location: dz9.php');
 	} else {
-		header('Location: install.php');
+            header('Location: install.php');
 	}
