@@ -56,4 +56,8 @@
     
     $smarty->assign('data_list', takeAdList());
 
+    if (condition) {
+        # code...
+    }
+
     $smarty->display('index.tpl');
