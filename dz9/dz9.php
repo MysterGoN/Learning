@@ -25,7 +25,6 @@
     
     if (isset($_GET['delete'])) {   
         deleteAd($_GET['delete']);
-        unset($_GET['delete']);
         header('Location: ' . $currentFile);
     }
 
