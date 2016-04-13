@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     $smarty_dir = 'smarty/';
 
     require($smarty_dir . 'libs/Smarty.class.php');
