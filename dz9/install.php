@@ -9,26 +9,31 @@
         if (!$conn = mysql_connect($_POST['server_name'], $_POST['username'], $_POST['password'])) {
             die('Невозможно установить соединение!');
         }
-
         if(mysql_select_db($_POST['database'])){
-            mysql_close();
             mysql_query('drop database ' . $_POST['database']);
         }
         mysql_query('create database ' . $_POST['database']);
-        mysql_select_db($_POST['database']);
+        mysql_select_db($_POST['database']) or die('не была выбрана база данных');
         if(is_uploaded_file($_FILES["dbfile"]["tmp_name"]))
         {
-          move_uploaded_file($_FILES["dbfile"]["tmp_name"], "db/" . $_FILES["dbfile"]["name"]);
+            move_uploaded_file($_FILES["dbfile"]["tmp_name"], "../db/" . $_FILES["dbfile"]["name"]);
         } else {
-           die("Ошибка загрузки файла");
+            die("Ошибка загрузки файла");
         }
+        
         if (isset($_FILES['dbfile'])) {
-            $file = "db/" . $_FILES["dbfile"]["name"];
-            if($fp = file_get_contents($file)) {
-              $var_array = explode(';',$fp);
-              foreach($var_array as $value) {
-                mysql_query($value.';',$dbconn);
-              }
+            $templine = '';
+            $lines = file("../db/" . $_FILES["dbfile"]["name"]);
+            foreach ($lines as $line)
+            {
+                if (substr($line, 0, 2) == '--' || $line == '')
+                    continue;
+                $templine .= $line;
+                if (substr(trim($line), -1, 1) == ';')
+                {
+                    mysql_query($templine) or print('Error performing query \'<strong>' . $templine . '\': ' . mysql_error() . '<br /><br />');
+                    $templine = '';
+                }
             }
         } else {
             die('Не был выбран файл дампа базы данных');
