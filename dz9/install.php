@@ -37,12 +37,12 @@
         mysql_close();
         $_SESSION['dbinstall'] = true;
         $f = fopen('data_connection.php', 'w');
-        fwrite($f, "<?php\n")
+        fwrite($f, "<?php\n");
         foreach ($_POST as $key => $value) {
-            if ($key == ('install' || 'dbfile')) {
+            if ($key == 'install' || $key == 'dbfile') {
                 continue;
             }
-            fwrite($f, $key . " = '" . $value . "';\n");
+            fwrite($f, '$' . $key . " = '" . $value . "';\n");
         }
         fclose($f);
         header('Location: index.php');

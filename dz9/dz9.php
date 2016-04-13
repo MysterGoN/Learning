@@ -33,7 +33,7 @@
         $arr = array('private' => $private, 
                      'name' => $name, 
                      'email' => $email, 
-                     'allow_mails' => $allow_mail, 
+                     'allow_mail' => $allow_mail,
                      'phone' => $phone, 
                      'city' => $city, 
                      'ad' => $ad, 

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-04-05 16:55:43
+<?php /* Smarty version 2.6.25-dev, created on 2016-04-13 13:56:58
          compiled from form.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios', 'form.tpl', 5, false),array('function', 'html_checkboxes', 'form.tpl', 20, false),array('function', 'html_options', 'form.tpl', 32, false),)), $this); ?>
@@ -25,7 +25,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios
         </tr>
         <tr>
             <td></td>
-            <td><?php echo smarty_function_html_checkboxes(array('name' => 'allow_mails','options' => $this->_tpl_vars['allow_mails'],'selected' => $this->_tpl_vars['arr']['allow_mails']), $this);?>
+            <td><?php echo smarty_function_html_checkboxes(array('name' => 'allow_mail','options' => $this->_tpl_vars['allow_mails'],'selected' => $this->_tpl_vars['arr']['allow_mail']), $this);?>
 </td>
         </tr>
         <tr>

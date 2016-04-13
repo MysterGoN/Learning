@@ -16,7 +16,7 @@
         $date = array('private' => $row['private_id'], 
                       'name' => $row['name'], 
                       'email' => $row['email'], 
-                      'allow_mails' => $row['allow_mail_id'], 
+                      'allow_mail' => $row['allow_mail_id'], 
                       'phone' => $row['phone'], 
                       'city' => $row['city_id'], 
                       'ad' => $row['ad_category_id'], 
@@ -46,7 +46,7 @@
                 . "private_id = '" . $array['private']
                 . "', name = '" . $array['name']
                 . "', email = '" . $array['email']
-                . "', allow_mail_id = '" . $array['allow_mails']
+                . "', allow_mail_id = '" . $array['allow_mail']
                 . "', phone = '" . $array['phone']
                 . "', city_id = '" . $array['city']
                 . "', ad_category_id = '" . $array['ad']
@@ -60,7 +60,7 @@
                 . "private_id = '" . $array['private']
                 . "', name = '" . $array['name']
                 . "', email = '" . $array['email']
-                . "', allow_mail_id = '" . $array['allow_mails']
+                . "', allow_mail_id = '" . $array['allow_mail']
                 . "', phone = '" . $array['phone']
                 . "', city_id = '" . $array['city']
                 . "', ad_category_id = '" . $array['ad']
