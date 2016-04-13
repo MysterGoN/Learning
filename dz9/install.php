@@ -36,12 +36,15 @@
         }
         mysql_close();
         $_SESSION['dbinstall'] = true;
+        $f = fopen('data_connection.php', 'w');
+        fwrite($f, "<?php\n")
         foreach ($_POST as $key => $value) {
-            if ($key == 'install') {
+            if ($key == ('install' || 'dbfile')) {
                 continue;
             }
-            $_SESSION[$key] = $value; 
+            fwrite($f, $key . " = '" . $value . "';\n");
         }
+        fclose($f);
         header('Location: index.php');
     }
 ?>
