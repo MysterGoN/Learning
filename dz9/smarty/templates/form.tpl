@@ -2,7 +2,7 @@
     <table>
         <tr>
             <td></td>
-            <td>{html_radios name="private" options=$privates selected=$arr.private}</td>
+            <td>{html_radios name="private_id" options=$privates selected=$arr.private_id}</td>
         </tr>
         <tr>
             <td><label>Ваше имя</label></td>
@@ -17,7 +17,7 @@
         </tr>
         <tr>
             <td></td>
-            <td>{html_checkboxes name="allow_mail" options=$allow_mails selected=$arr.allow_mail}</td>
+            <td>{html_checkboxes name="allow_mail_id" options=$allow_mails selected=$arr.allow_mail_id}</td>
         </tr>
         <tr>
             <td><label>Номер телефона</label></td>
@@ -26,19 +26,19 @@
         <tr>
             <td><label>Город</label></td>
             <td>
-                <select title="Выберите Ваш город" name="city"> 
+                <select title="Выберите Ваш город" name="city_id"> 
                     <option value="">-- Выберите город --</option>
                     <option disabled="disabled">-- Города --</option>
-                    {html_options options=$citys selected=$arr.city}
+                    {html_options options=$citys selected=$arr.city_id}
                 </select> 
             </td>
         </tr>
         <tr>
             <td><label>Категория</label></td>
             <td>
-                <select title="Выберите категорию объявления" name="ad_category"> 
+                <select title="Выберите категорию объявления" name="ad_category_id"> 
                     <option value="">-- Выберите категорию --</option>
-                    {html_options options=$ad_category selected=$arr.ad}
+                    {html_options options=$ad_categorys selected=$arr.ad_category_id}
                 </select>
             </td>
         </tr>

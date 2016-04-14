@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-04-13 13:56:58
+<?php /* Smarty version 2.6.25-dev, created on 2016-04-14 13:01:04
          compiled from form.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios', 'form.tpl', 5, false),array('function', 'html_checkboxes', 'form.tpl', 20, false),array('function', 'html_options', 'form.tpl', 32, false),)), $this); ?>
@@ -6,7 +6,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios
     <table>
         <tr>
             <td></td>
-            <td><?php echo smarty_function_html_radios(array('name' => 'private','options' => $this->_tpl_vars['privates'],'selected' => $this->_tpl_vars['arr']['private']), $this);?>
+            <td><?php echo smarty_function_html_radios(array('name' => 'private_id','options' => $this->_tpl_vars['privates'],'selected' => $this->_tpl_vars['arr']['private_id']), $this);?>
 </td>
         </tr>
         <tr>
@@ -25,7 +25,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios
         </tr>
         <tr>
             <td></td>
-            <td><?php echo smarty_function_html_checkboxes(array('name' => 'allow_mail','options' => $this->_tpl_vars['allow_mails'],'selected' => $this->_tpl_vars['arr']['allow_mail']), $this);?>
+            <td><?php echo smarty_function_html_checkboxes(array('name' => 'allow_mail_id','options' => $this->_tpl_vars['allow_mails'],'selected' => $this->_tpl_vars['arr']['allow_mail_id']), $this);?>
 </td>
         </tr>
         <tr>
@@ -36,10 +36,10 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios
         <tr>
             <td><label>Город</label></td>
             <td>
-                <select title="Выберите Ваш город" name="city"> 
+                <select title="Выберите Ваш город" name="city_id"> 
                     <option value="">-- Выберите город --</option>
                     <option disabled="disabled">-- Города --</option>
-                    <?php echo smarty_function_html_options(array('options' => $this->_tpl_vars['citys'],'selected' => $this->_tpl_vars['arr']['city']), $this);?>
+                    <?php echo smarty_function_html_options(array('options' => $this->_tpl_vars['citys'],'selected' => $this->_tpl_vars['arr']['city_id']), $this);?>
 
                 </select> 
             </td>
@@ -47,9 +47,9 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios
         <tr>
             <td><label>Категория</label></td>
             <td>
-                <select title="Выберите категорию объявления" name="ad_category"> 
+                <select title="Выберите категорию объявления" name="ad_category_id"> 
                     <option value="">-- Выберите категорию --</option>
-                    <?php echo smarty_function_html_options(array('options' => $this->_tpl_vars['ad_category'],'selected' => $this->_tpl_vars['arr']['ad']), $this);?>
+                    <?php echo smarty_function_html_options(array('options' => $this->_tpl_vars['ad_categorys'],'selected' => $this->_tpl_vars['arr']['ad_category_id']), $this);?>
 
                 </select>
             </td>
