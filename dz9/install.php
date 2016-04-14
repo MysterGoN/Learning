@@ -12,14 +12,14 @@
         mysql_select_db($_POST['database']) or die('не была выбрана база данных');
         if(is_uploaded_file($_FILES["dbfile"]["tmp_name"]))
         {
-            move_uploaded_file($_FILES["dbfile"]["tmp_name"], "../db/" . $_FILES["dbfile"]["name"]);
+            move_uploaded_file($_FILES["dbfile"]["tmp_name"], "db/" . $_FILES["dbfile"]["name"]);
         } else {
             die("Ошибка загрузки файла");
         }
         
         if (isset($_FILES['dbfile'])) {
             $templine = '';
-            $lines = file("../db/" . $_FILES["dbfile"]["name"]);
+            $lines = file("db/" . $_FILES["dbfile"]["name"]);
             foreach ($lines as $line)
             {
                 if (substr($line, 0, 2) == '--' || $line == '')
