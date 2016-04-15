@@ -10,30 +10,21 @@
         }
         mysql_query('create database ' . $_POST['database']);
         mysql_select_db($_POST['database']) or die('не была выбрана база данных');
-        if(is_uploaded_file($_FILES["dbfile"]["tmp_name"]))
+       
+        $templine = '';
+        $lines = file("db/dz9_db.sql");
+        foreach ($lines as $line)
         {
-            move_uploaded_file($_FILES["dbfile"]["tmp_name"], "db/" . $_FILES["dbfile"]["name"]);
-        } else {
-            die("Ошибка загрузки файла");
-        }
-        
-        if (isset($_FILES['dbfile'])) {
-            $templine = '';
-            $lines = file("db/" . $_FILES["dbfile"]["name"]);
-            foreach ($lines as $line)
+            if (substr($line, 0, 2) == '--' || $line == '')
+                continue;
+            $templine .= $line;
+            if (substr(trim($line), -1, 1) == ';')
             {
-                if (substr($line, 0, 2) == '--' || $line == '')
-                    continue;
-                $templine .= $line;
-                if (substr(trim($line), -1, 1) == ';')
-                {
-                    mysql_query($templine) or print('Error performing query \'<strong>' . $templine . '\': ' . mysql_error() . '<br /><br />');
-                    $templine = '';
-                }
+                mysql_query($templine) or print('Error performing query \'<strong>' . $templine . '\': ' . mysql_error() . '<br /><br />');
+                $templine = '';
             }
-        } else {
-            die('Не был выбран файл дампа базы данных');
         }
+
         mysql_close();
         $_SESSION['dbinstall'] = true;
         $f = fopen('data_connection.php', 'w');
@@ -65,8 +56,6 @@
         <input type="password" name='password'></p>
         <p><label>Database:</label><br>
         <input type="text" name='database'></p>
-        <p><label>Database file:</label><br>
-        <input type="file" name='dbfile'></p>
         <p><input type="submit" value='install' name="install"></p>
     </form>
 </body>

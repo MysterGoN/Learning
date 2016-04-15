@@ -1,10 +1,13 @@
 <?php
     function connectToDb($server_name, $user_name, $password, $database) {
+        $error = "<br>Пожалуйста перейдите "
+                . "по ссылке для устранения неполадок: "
+                . "<a href='install.php'>Устранить!</a>";
         $conn = mysql_connect($server_name, $user_name, $password) 
-            or die('Невозможно установить соединение: '. mysql_error());
+            or die('Невозможно установить соединение ' . $error);
     
         mysql_select_db($database) 
-            or die('Не удалось выбрать базу данных');
+            or die('Не удалось выбрать базу данных' . $error);
     
         mysql_query("SET NAMES utf8");
     }

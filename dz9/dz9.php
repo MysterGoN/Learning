@@ -33,9 +33,9 @@
         $arr = dataForm();
         
         if (empty($arr['name']) || empty($arr['title']) || empty($arr['price'])) {
-            if (empty($name)){$smarty->assign('error_name', true);}
-            if (empty($title)) {$smarty->assign('error_title', true);}
-            if (empty($price)) {$smarty->assign('error_price', true);}
+            if (empty($arr['name'])){$smarty->assign('error_name', true);}
+            if (empty($arr['title'])) {$smarty->assign('error_title', true);}
+            if (empty($arr['price'])) {$smarty->assign('error_price', true);}
             $smarty->assign('error', 'Пожалуйста заполните поле');
             $smarty->assign('arr', $arr);
         }else{
