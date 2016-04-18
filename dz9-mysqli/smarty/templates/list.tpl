@@ -1,0 +1,1 @@
+{html_table loop=$data_list cols="Название, Цена, Имя, , " table_attr='border="0"'}
