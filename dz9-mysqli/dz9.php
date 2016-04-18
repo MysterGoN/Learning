@@ -18,14 +18,14 @@
     include 'dbscripts.php';
     include 'data_connection.php';    
     
-    connectToDb($server_name, $user_name, $password, $database);
+    $db = connectToDb($server_name, $user_name, $password, $database);
     
     include 'data.php';
     include 'datascripts.php';
     include 'search.php';
     
     if (isset($_GET['delete'])) {   
-        deleteAd($_GET['delete']);
+        deleteAd($_GET['delete'], $db);
         header('Location: ' . $currentFile);
     }
 
@@ -40,16 +40,16 @@
             $smarty->assign('arr', $arr);
         }else{
             if (isset($_GET['id'])) {
-                editAd($arr, $_GET['id']);
+                editAd($arr, $_GET['id'], $db);
             }else{
-                addAd($arr);
+                addAd($arr, $db);
             }
             header('Location: ' . $currentFile);
         }     
     }
     
     if (isset($_GET['id'])) {
-        $smarty->assign('arr', takeAd($_GET['id']));
+        $smarty->assign('arr', takeAd($_GET['id'], $db));
     }
     
     if (isset($_POST['search'])) {
@@ -59,6 +59,6 @@
     
     $search = " where title like '%" . $_SESSION['search'] . "%'";
 
-    $smarty->assign('data_list', takeAdList($search));
+    $smarty->assign('data_list', takeAdList($search, $db));
     
     $smarty->display('index.tpl');
