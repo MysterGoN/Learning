@@ -1,10 +1,21 @@
 <?php
-    function connectToDb($server_name, $user_name, $password, $database) {
-        $db = DbSimple_Generic::connect('mysqli://' . $user_name . ':' . $password . '@' . $server_name . '/' . $database);
+    function myLogger($db, $sql, $caller) {
+        global $firePHP;
+        if (isset($caller['file'])){
+            $firePHP->group("at ".@$caller['file'].' line '.@$caller['line']);
+        }
+        $firePHP->log($sql);
+        if (isset($caller['file'])){
+            $firePHP->groupEnd();
+        }
+    }
     
-        $db->setErrorHandler('databaseErrorHandler');
-        
-        function databaseErrorHandler($message, $info) {
+    function tableLogger($table) {
+        global $firePHP;
+        $firePHP->table('Table Label', $table);
+    }
+    
+    function databaseErrorHandler($message, $info) {
             if (!error_reporting()) return;
             echo "Не удалось установить соединение"
                . "<br>Пожалуйста перейдите "
@@ -12,19 +23,28 @@
                . "<a href='install.php'>Устранить!</a>";
             exit();
         }
+    
+    function connectToDb($server_name, $user_name, $password, $database) {
+        $db = DbSimple_Generic::connect('mysqli://' . $user_name . ':' . $password . '@' . $server_name . '/' . $database);
+    
+        $db->setErrorHandler('databaseErrorHandler');
+        
+        $db->setLogger('myLogger');
         
         $db->query("SET NAMES utf8");
         
         return $db;
     }
     
-    function takeAd($id, $db) {
+    function takeAd($id, $db) {        
         $result = $db->selectRow('select * from ads where ads.id = ?', $id);
+        tableLogger($result);
         return $result;
     }
 
     function takeAdList($search, $db) {
         $result = $db->select('select id, title, price, name from ads where title like ?', '%' . $search . '%');
+        tableLogger($result);
         $data = array();
         foreach ($result as $value) {
             $edit = "<a  href='?id=" . $value[id] . "'>редактировать</a> ";
@@ -39,48 +59,31 @@
         return $data;
     }
 
-    function addAd($array, $mysqli) {
-        $arr = '';
-        $end = "', ";
-        foreach ($array as $key => $value) {
-            if ($key == 'price') {$end = "';";}
-            $arr .= $key . " = '" . $value . $end;
-        }
-        $mysqli->query("insert into ads set " . $arr);
+    function addAd($array, $db) {
+        $db->query("insert into ads set ?a", $array);
     }
     
-    function editAd($array, $id, $mysqli) {
-        $arr = '';
-        $end = "', ";
-        foreach ($array as $key => $value) {
-            if ($key == 'price') {$end = "' ";}
-            $arr .= $key . " = '" . $value . $end;
-        }
-        $arr .= "where ads.id = " . $id . ";";
-        $mysqli->query("update ads set " . $arr);
+    function editAd($array, $id, $db) {
+        $db->query("update ads set ?a where id = ?", $array, $id);
     }
     
-    function deleteAd($id, $mysqli) {
-        $mysqli->query("delete from ads where ads.id = " . $id . ";");
+    function deleteAd($id, $db) {
+        $db->query("delete from ads where ads.id = ?", $id);
     }
     
-    function takeDate($name, $mysqli) {
-        $result = $mysqli->query('select * from ' . $name );
-        $date = array();
-        while ($row = $result->fetch_array(MYSQLI_NUM)){
-            $date[$row[0]] = $row[1];
-        }
-        return $date;
+    function takeData($name, $db) {
+        $result = $db->selectCol('select id as array_key, ?# from ?#', $name, $name . 's');
+        tableLogger($result);
+        return $result;
     }
     
-    function takeCategorys($mysqli) {
-        $result = $mysqli->query('select category, subcategorys.id, subcategory '
+    function takeCategorys($db) {
+        $result = $db->selectCol('select category as array_key_1, '
+                            . 'subcategorys.id as array_key_2, '
+                            . 'subcategory '
                             . 'from categorys '
                             . 'left join subcategorys '
                             . 'on (categorys.id = subcategorys.category_id)');
-        $date = array();
-        while ($row = $result->fetch_array(MYSQLI_NUM)){
-            $date[$row[0]][$row[1]] = $row[2];
-        }
-        return $date;
+        tableLogger($result);
+        return $result;
     }
