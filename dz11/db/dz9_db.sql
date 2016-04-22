@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Апр 06 2016 г., 17:14
+-- Время создания: Апр 22 2016 г., 21:25
 -- Версия сервера: 5.5.25
 -- Версия PHP: 5.3.13
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База данных: `dz9_db`
+-- База данных: `wow`
 --
 
 -- --------------------------------------------------------
@@ -39,7 +39,18 @@ CREATE TABLE IF NOT EXISTS `ads` (
   `description` text,
   `price` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+
+--
+-- Дамп данных таблицы `ads`
+--
+
+INSERT INTO `ads` (`id`, `private_id`, `name`, `email`, `allow_mail_id`, `phone`, `city_id`, `ad_category_id`, `title`, `description`, `price`) VALUES
+(4, 1, '321', '321', 1, 321, 641600, 8, '321', '321', 3211),
+(5, NULL, '123', '', 0, 0, 0, 0, '123', '', 123),
+(15, 1, '312', '312', 1, 21, 641510, 6, '321', '321', 321),
+(16, NULL, '123', '', 0, 0, 0, 0, '123', '', 123),
+(17, NULL, '123', '', 0, 0, 0, 0, '123', '', 123);
 
 -- --------------------------------------------------------
 
@@ -70,18 +81,27 @@ INSERT INTO `allow_mails` (`id`, `allow_mail`) VALUES
 CREATE TABLE IF NOT EXISTS `categorys` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category` varchar(30) NOT NULL,
+  `parrent_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `category` (`category`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 --
 -- Дамп данных таблицы `categorys`
 --
 
-INSERT INTO `categorys` (`id`, `category`) VALUES
-(2, 'Недвижимость'),
-(3, 'Работа'),
-(1, 'Транспорт');
+INSERT INTO `categorys` (`id`, `category`, `parrent_id`) VALUES
+(1, 'Транспорт', NULL),
+(2, 'Недвижимость', NULL),
+(3, 'Работа', NULL),
+(4, 'Автомобили с пробегом', 1),
+(5, 'Новые автомобили', 1),
+(6, 'Мотоциклы и мототехника', 1),
+(12, 'Резюме (поиск работы)', 3),
+(13, 'Вакансии (поиск сотрудников)', 3),
+(14, 'Квартиры', 2),
+(15, 'Комнаты', 2),
+(16, 'Дома, дачи, котеджи', 2);
 
 -- --------------------------------------------------------
 
