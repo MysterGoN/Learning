@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Апр 22 2016 г., 21:25
+-- Время создания: Апр 22 2016 г., 21:42
 -- Версия сервера: 5.5.25
 -- Версия PHP: 5.3.13
 
@@ -40,17 +40,6 @@ CREATE TABLE IF NOT EXISTS `ads` (
   `price` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
-
---
--- Дамп данных таблицы `ads`
---
-
-INSERT INTO `ads` (`id`, `private_id`, `name`, `email`, `allow_mail_id`, `phone`, `city_id`, `ad_category_id`, `title`, `description`, `price`) VALUES
-(4, 1, '321', '321', 1, 321, 641600, 8, '321', '321', 3211),
-(5, NULL, '123', '', 0, 0, 0, 0, '123', '', 123),
-(15, 1, '312', '312', 1, 21, 641510, 6, '321', '321', 321),
-(16, NULL, '123', '', 0, 0, 0, 0, '123', '', 123),
-(17, NULL, '123', '', 0, 0, 0, 0, '123', '', 123);
 
 -- --------------------------------------------------------
 
