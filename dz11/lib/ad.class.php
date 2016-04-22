@@ -38,4 +38,8 @@
         public function get_description() {return $this->description;}
         public function get_price() {return $this->price;}
         
+        public function get_vars() {
+            return get_object_vars($this);
+        }
+        
     }

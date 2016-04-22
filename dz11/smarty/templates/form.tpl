@@ -2,26 +2,30 @@
     <table>
         <tr>
             <td></td>
-            <td>{html_radios name="private_id" options=$privates selected=$arr.private_id}</td>
+            <td><input type="text" readonly hidden="true" name="id" value="{$ad->get_id()}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>{html_radios name="private_id" options=$privates selected=$ad->get_private_id()}</td>
         </tr>
         <tr>
             <td><label>Ваше имя</label></td>
             <td>
-                <input type="text" maxlength="40" value="{$arr.name}" name="name">
+                <input type="text" maxlength="40" value="{$ad->get_name()}" name="name">
                 {if $error_name}<font color="red">{$error}</font>{/if}
             </td>
         </tr>
         <tr>
             <td><label>Электронная почта</label></td>
-            <td><input type="text" value="{$arr.email}" name="email"></td>
+            <td><input type="text" value="{$ad->get_email()}" name="email"></td>
         </tr>
         <tr>
             <td></td>
-            <td>{html_checkboxes name="allow_mail_id" options=$allow_mails selected=$arr.allow_mail_id}</td>
+            <td>{html_checkboxes name="allow_mail_id" options=$allow_mails selected=$ad->get_allow_mail_id()}</td>
         </tr>
         <tr>
             <td><label>Номер телефона</label></td>
-            <td><input type="text" value="{$arr.phone}" name="phone"></td>
+            <td><input type="text" value="{$ad->get_phone()}" name="phone"></td>
         </tr>
         <tr>
             <td><label>Город</label></td>
@@ -29,7 +33,7 @@
                 <select title="Выберите Ваш город" name="city_id"> 
                     <option value="">-- Выберите город --</option>
                     <option disabled="disabled">-- Города --</option>
-                    {html_options options=$citys selected=$arr.city_id}
+                    {html_options options=$citys selected=$ad->get_city_id()}
                 </select> 
             </td>
         </tr>
@@ -38,25 +42,25 @@
             <td>
                 <select title="Выберите категорию объявления" name="ad_category_id"> 
                     <option value="">-- Выберите категорию --</option>
-                    {html_options options=$ad_categorys selected=$arr.ad_category_id}
+                    {html_options options=$ad_categorys selected=$ad->get_ad_category_id()}
                 </select>
             </td>
         </tr>
         <tr>
             <td><label>Название объявления</label></td>
             <td>
-                <input type="text" maxlength="50" value="{$arr.title}" name="title">
+                <input type="text" maxlength="50" value="{$ad->get_title()}" name="title">
                 {if $error_title}<font color="red">{$error}</font>{/if}
             </td>
         </tr>
         <tr>
             <td><label>Описание объявления</label></td>
-            <td><textarea maxlength="3000" name="description">{$arr.description}</textarea></td>
+            <td><textarea maxlength="3000" name="description">{$ad->get_description()}</textarea></td>
         </tr>
         <tr>
             <td><label>Цена</label></td>
             <td>
-                <input type="text" maxlength="9" value="{$arr.price}" name="price">&nbsp;<span>руб.</span>
+                <input type="text" maxlength="9" value="{$ad->get_price()}" name="price">&nbsp;<span>руб.</span>
                 {if $error_price}<font color="red">{$error}</font>{/if}
             </td>
         </tr>

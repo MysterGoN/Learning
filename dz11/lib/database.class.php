@@ -15,25 +15,14 @@
         $firePHP->table('Table Label', $table);
     }
     
-//    function databaseErrorHandler($message, $info) {
-//            if (!error_reporting()) return;
-//            echo "Не удалось установить соединение"
-//               . "<br>Пожалуйста перейдите "
-//               . "по ссылке для устранения неполадок: "
-//               . "<a href='install.php'>Устранить!</a>";
-//            exit();
-//    }
-    
-    function databaseErrorHandler($message, $info)
-{
-    // Если использовалась @, ничего не делать.
-    if (!error_reporting()) return;
-    // Выводим подробную информацию об ошибке.
-    echo "SQL Error: $message<br><pre>"; 
-    print_r($info);
-    echo "</pre>";
-    exit();
-}
+    function databaseErrorHandler($message, $info) {
+            if (!error_reporting()) return;
+            echo "Не удалось установить соединение"
+               . "<br>Пожалуйста перейдите "
+               . "по ссылке для устранения неполадок: "
+               . "<a href='install.php'>Устранить!</a>";
+            exit();
+    }
     
     class database {
         private $server_name;

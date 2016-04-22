@@ -36,8 +36,8 @@
         }
         
         public function saveAD(ad $ad){
-            $vars = get_object_vars($ad);
-            $this->dbSimple->query("replace into ads(?#) value(?a)", 
+            $vars = $ad->get_vars();
+            $this->dbSimple->query("replace into ads (?#) value (?a)", 
                         array_keys($vars), array_values($vars));
         }
 
