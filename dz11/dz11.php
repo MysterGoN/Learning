@@ -4,7 +4,7 @@
     
     $smarty_dir = 'smarty/';
 
-    require($smarty_dir . 'libs/Smarty.class.php');
+    require_once($smarty_dir . 'libs/Smarty.class.php');
     $smarty = new Smarty();
 
     $smarty->compile_check = true;
@@ -24,6 +24,8 @@
     $firePHP = FirePHP::getInstance(true);
     $firePHP->setEnabled(true);
     
+    require_once 'datascripts.php';
+    
     spl_autoload_register(function ($class) {
         $class_path = 'lib/' . $class . '.class.php';
         if (file_exists($class_path)) {
@@ -31,16 +33,15 @@
         }
     });
 
-    include 'data_connection.php';    
+    require_once 'data_connection.php';    
     
     $connection = new database($server_name, $user_name, $password, $database);
     $db = new adSet($connection->connect());
     $errors = new errors(array('title', 'name', 'price'));
     
-    include 'data.php';
-    include 'datascripts.php';
-    include 'search.php';
-    include 'debugging.php';
+    require_once 'data.php';
+    require_once 'search.php';
+    require_once 'debugging.php';
     
     
     if (isset($_GET['delete'])) {   

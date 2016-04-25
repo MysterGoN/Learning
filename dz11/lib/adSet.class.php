@@ -1,21 +1,4 @@
-<?php
-    function treeToArray($tree) {
-        $array = array();
-        $cat = '';
-        foreach ($tree as $category) {
-            foreach ($category as $key => $value) {
-                if($key == 'category') {
-                    $cat = $value;
-                } else {
-                    foreach ($value as $key1 => $value1) {
-                        $array[$cat][$key1] = $value1['category'];
-                    }
-                }
-            }
-        }
-        return $array;
-    }
-    
+<?php    
     class adSet {
         private $dbSimple;
         

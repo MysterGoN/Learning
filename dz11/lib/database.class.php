@@ -1,29 +1,4 @@
 <?php
-    function myLogger($db, $sql, $caller) {
-        global $firePHP;
-        if (isset($caller['file'])){
-            $firePHP->group("at ".@$caller['file'].' line '.@$caller['line']);
-        }
-        $firePHP->log($sql);
-        if (isset($caller['file'])){
-            $firePHP->groupEnd();
-        }
-    }
-    
-    function tableLogger($table) {
-        global $firePHP;
-        $firePHP->table('Table Label', $table);
-    }
-    
-    function databaseErrorHandler($message, $info) {
-            if (!error_reporting()) return;
-            echo "Не удалось установить соединение"
-               . "<br>Пожалуйста перейдите "
-               . "по ссылке для устранения неполадок: "
-               . "<a href='install.php'>Устранить!</a>";
-            exit();
-    }
-    
     class database {
         private $server_name;
         private $user_name;
