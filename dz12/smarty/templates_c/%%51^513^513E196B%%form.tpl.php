@@ -1,9 +1,9 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-04-27 11:13:42
+<?php /* Smarty version 2.6.25-dev, created on 2016-04-27 15:55:44
          compiled from form.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios', 'form.tpl', 11, false),array('function', 'html_checkboxes', 'form.tpl', 31, false),array('function', 'html_options', 'form.tpl', 47, false),)), $this); ?>
 <div class="col-md-4">
-    <form class="form-horizontal" method="post">  
+    <form class="form-horizontal" method="post" action="dz12.php">  
         <div class="form-group">
             <div class="col-md-offset-5 col-md-7">
                 <input type="text" readonly hidden name="id" value="<?php echo $this->_tpl_vars['ad']->get_id(); ?>

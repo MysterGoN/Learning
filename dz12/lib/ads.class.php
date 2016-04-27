@@ -16,6 +16,7 @@
 
         public function deleteAd($id) {
             $this->ads[$id]->delete();
+            unset($this->ads[$id]);
         }
 
         public function addAd (ad $ad) {
@@ -40,7 +41,7 @@
             }
         }
        
-        public function display() {
+        public function adListPreparation() {
             global $smarty;
             $row = '';
             foreach ($this->ads as $value) {
@@ -48,6 +49,12 @@
                 $row .= $smarty->fetch('ads_row.tpl');
             }
             $smarty->assign('ads_rows',$row);
+            
+        }
+        
+        public function display() {
+            global $smarty;
+            $smarty->display('index.tpl');
         }
     }
     
