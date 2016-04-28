@@ -1,6 +1,6 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-04-27 11:13:42
+<?php /* Smarty version 2.6.25-dev, created on 2016-04-27 16:54:54
          compiled from ads.tpl */ ?>
-<div class="col-md-offset-1 col-md-6">
+<div class="col-md-offset-1 col-md-5">
     <h2 class="sub-header">Объявления</h2>
     <form class="form-inline" method="post">
             <input type="text" class="form-control" name="text" value='<?php echo $this->_tpl_vars['search']; ?>
