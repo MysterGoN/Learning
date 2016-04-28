@@ -44,19 +44,20 @@
     
     $ads = ads::instance();
     $ads->getAdsFromDB($_SESSION['search']);
-    $ads->display();
+    $ads->adListPreparation();
     
+    
+    if (isset($_GET['delete'])) {   
+        $ads->deleteAd($_GET['delete']);
+        header('Location: ' . $currentFile);
+    }  
+     
     if (isset($_GET['id'])) {
         $smarty->assign('ad', $ads->getAd($_GET['id']));
     } else {
         $ad = new ad();
         $smarty->assign('ad', $ad);
     }
-    
-    if (isset($_GET['delete'])) {   
-        $ads->deleteAd($_GET['delete']);
-        header('Location: ' . $currentFile);
-    }    
     
     if (isset($_POST['submit'])) {
         $ad = new ad(dataForm());      
@@ -73,4 +74,4 @@
         header('Location: ' . $currentPage);
     }
     
-    $smarty->display('index.tpl');
+    $ads->display();
