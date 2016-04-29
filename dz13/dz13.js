@@ -39,11 +39,15 @@ console.info('Задание 4');
 
 var book1 = {'title': 'Путь шамана', 'author': 'Василий Маханенко', 'pages': '300'};
 var book2 = {'title': 'Ник', 'author': 'Анжей Ясинский', 'pages': '400'};
-var books = {0: book1, 1: book2};
-console.log('Недавно я прочитал книги ' + books[0]['title'] 
-            + ' и ' + books[1]['title']
+var books = {'library': Array(book1, book2)};
+books.view = function() {
+    console.log('Недавно я прочитал книги ' + this.library[0]['title'] 
+            + ' и ' + this.library[1]['title']
             + ', написанные соответственно авторами '
-            + books[0]['author'] + ' и ' + books[1]['author']
+            + this.library[0]['author'] + ' и ' + this.library[1]['author']
             + ', я осилил в сумме ' 
-            + (Number(books[0]['pages']) + Number(books[1]['pages']))
-            + ' страниц, не ожидал от себя подобного')
+            + (Number(this.library[0]['pages']) + Number(this.library[1]['pages']))
+            + ' страниц, не ожидал от себя подобного');
+};
+
+books.view();
