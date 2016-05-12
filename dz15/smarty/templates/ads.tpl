@@ -13,9 +13,16 @@
                 <th>Имя</th>
                 <th>Действия</th>
             </thead>
-            <tbody>
+            <tbody id='tbody_list'>
                 {$ads_rows}
+                {literal}
+                    <script>
+                        notFound();
+                    </script>
+                {/literal}
+                
             </tbody>
         </table>
     </div>
+    <div id="container"></div>
 </div>

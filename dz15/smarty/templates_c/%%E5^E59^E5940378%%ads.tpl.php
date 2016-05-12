@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-04-29 00:09:25
+<?php /* Smarty version 2.6.25-dev, created on 2016-05-12 16:15:28
          compiled from ads.tpl */ ?>
 <div class="col-md-offset-1 col-md-5">
     <h2 class="sub-header">Объявления</h2>
@@ -16,10 +16,18 @@
                 <th>Имя</th>
                 <th>Действия</th>
             </thead>
-            <tbody>
+            <tbody id='tbody_list'>
                 <?php echo $this->_tpl_vars['ads_rows']; ?>
 
+                <?php echo '
+                    <script>
+                        notFound();
+                    </script>
+                '; ?>
+
+                
             </tbody>
         </table>
     </div>
+    <div id="container"></div>
 </div>

@@ -31,7 +31,7 @@
             return $this->ads[$id];
         }
         
-        public function getAdsFromDB($search) {
+        public function getAdsFromDB($search = '') {
             global $db;
             $result = $db->select('select * from ads where title like ?', '%' . $search . '%');
             tableLogger($result);
@@ -48,7 +48,12 @@
                 $smarty->assign('ad', $value);
                 $row .= $smarty->fetch('ads_row.tpl');
             }
-            $smarty->assign('ads_rows',$row);
+            if ($row) {
+                $smarty->assign('ads_rows',$row);
+            } else {
+                $smarty->assign('ads_row', 'Объявлений не найдено.');
+            }
+            
             
         }
         
