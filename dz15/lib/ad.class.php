@@ -12,7 +12,7 @@
         private $description = '';
         private $price = '';
         
-        public function __construct($ad = 0) {
+        public function __construct($ad = array()) {
             if (isset($ad['id'])) {
                 $this->id = $ad['id'];
             }
