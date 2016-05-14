@@ -54,11 +54,9 @@
     
     function databaseErrorHandler($message, $info) {
             if (!error_reporting()) return;
-            echo "Не удалось установить соединение"
+            die("Не удалось установить соединение"
                . "<br>Пожалуйста перейдите "
                . "по ссылке для устранения неполадок: "
-               . "<a href='install.php'>Устранить!</a><br>";
-            echo $message . '<br>';
-            echo $info . '<br>';
+               . "<a href='install.php'>Устранить!</a><br>");
             exit();
     }

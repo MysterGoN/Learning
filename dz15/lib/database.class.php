@@ -1,4 +1,5 @@
 <?php
+    
     class database {
         private $server_name;
         private $user_name;

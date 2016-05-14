@@ -1,4 +1,5 @@
 <?php
+    error_reporting(E_ERROR|E_PARSE|E_NOTICE);
     session_start();
 
     
@@ -37,6 +38,7 @@
     $conn = new database($server_name, $user_name, $password, $database);
     $db = $conn->connect();
     $errors = new errors(array('title', 'name', 'price'));
+    
     
     require_once 'contentscripts.php';
     require_once 'data.php';
