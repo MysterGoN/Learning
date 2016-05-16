@@ -13,24 +13,25 @@ $('document').ready(function(){
         
         $('#container').clone().prependTo('#container:first');
         notice = $('#container:first').children(':first');
+        notice.attr('id', 'notice-'+id);
         notice.hide();
-        
+        var notice_id = '#notice-'+id;
         $.getJSON('ajax.php?action=delete', 
         data,
         function(response){
             if (response.status == 'success') {
-                notice.addClass('alert alert-success');
+                $(notice_id).addClass('alert alert-success');
                 tr.fadeOut('slow', function(){
                     $(this).remove();
                     notFound();
                 });
             } else if (response.status == 'error'){
-                notice.addClass('alert alert-danger');
+                $(notice_id).addClass('alert alert-danger');
             }
-            notice.html(response.message);
-            notice.fadeIn('slow');
+            $(notice_id).html(response.message);
+            $(notice_id).fadeIn('slow');
             setTimeout(function() {
-                notice.fadeOut('slow', function(){
+                $(notice_id).fadeOut('slow', function(){
                     $(this).remove();
                 });
             }, 3000);
