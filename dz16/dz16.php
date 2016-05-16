@@ -1,11 +1,5 @@
 <?php
     require_once 'initialization.php';
-    
-    
-//    if (isset($_GET['delete'])) {   
-//        $ads->deleteAd($_GET['delete']);
-//        header('Location: ' . $currentFile);
-//    }  
      
     if (isset($_GET['id'])) {
         $smarty->assign('ad', $ads->getAd($_GET['id']));

@@ -50,6 +50,10 @@
         
         public function delete() {
             global $db;
-            $db->query('delete from ads where ads.id = ?', $this->id);
+            if ($db->query('delete from ads where ads.id = ?', $this->id)) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }

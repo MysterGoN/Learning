@@ -15,8 +15,12 @@
         }
 
         public function deleteAd($id) {
-            $this->ads[$id]->delete();
-            unset($this->ads[$id]);
+            if ($this->ads[$id]->delete()) {
+                unset($this->ads[$id]);
+                return true;
+            } else {
+                return false;
+            }
         }
 
         public function addAd (ad $ad) {

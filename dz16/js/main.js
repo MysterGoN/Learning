@@ -9,24 +9,33 @@ $('document').ready(function(){
         var id = $(this).closest('tr').children('td:first').html();
         var tr = $(this).closest('tr');
         
-       
+        var data = {'id': id};
+        
         $('#container').clone().prependTo('#container:first');
-        childConteiner = $('#container:first').children(':first');
-        childConteiner.hide();
-        childConteiner.load('ajax.php?action=delete&id='+id, 
-                        function(){
-                            $(this).addClass('alert alert-success');
-                            $(this).fadeIn('slow');
-                            tr.fadeOut('slow', function(){
-                                $(this).remove();
-                                notFound();
-                            });
-                            setTimeout(function() {
-                                $('#container').fadeOut('slow', function(){
-                                    $(this).remove();
-                                });
-                            }, 3000);
-                        });
+        notice = $('#container:first').children(':first');
+        notice.hide();
+        
+        $.getJSON('ajax.php?action=delete', 
+        data,
+        function(response){
+            if (response.status == 'success') {
+                notice.addClass('alert alert-success');
+                tr.fadeOut('slow', function(){
+                    $(this).remove();
+                    notFound();
+                });
+            } else if (response.status == 'error'){
+                notice.addClass('alert alert-danger');
+            }
+            notice.html(response.message);
+            notice.fadeIn('slow');
+            setTimeout(function() {
+                notice.fadeOut('slow', function(){
+                    $(this).remove();
+                });
+            }, 3000);
+        });
+        
     });
     
     
