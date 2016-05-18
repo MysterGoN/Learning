@@ -1,9 +1,9 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-04-29 00:09:25
+<?php /* Smarty version 2.6.25-dev, created on 2016-05-18 13:37:22
          compiled from form.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios', 'form.tpl', 11, false),array('function', 'html_checkboxes', 'form.tpl', 31, false),array('function', 'html_options', 'form.tpl', 47, false),)), $this); ?>
 <div class="col-md-4">
-    <form class="form-horizontal" method="post">  
+    <form id="ad_form" class="form-horizontal" method="post">  
         <div class="form-group">
             <div class="col-md-offset-5 col-md-7">
                 <input type="text" readonly hidden name="id" value="<?php echo $this->_tpl_vars['ad']->get_id(); ?>
@@ -97,7 +97,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios
         </div>
         <div class="form-group">
             <div class="col-md-offset-5 col-md-7">
-                <input type="submit" class="btn btn-default" value="Подтвердить" name="submit">
+                <button type="submit" class="submit btn btn-success" name='submit'><span class="glyphicon glyphicon-ok"></span></button>
                 <button type="button" class="btn btn-default" name="reset" onclick="location.href='<?php echo $this->_tpl_vars['currentFile']; ?>
 '">Очистить</button>
             </div>

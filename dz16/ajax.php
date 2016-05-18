@@ -11,6 +11,16 @@
             }
             echo json_encode($result);
             break;
+        case 'submit':
+            
+            break;
+        case 'edit':
+            $ad = $ads->getAd($_POST['id']);
+            echo json_encode($ad->get_vars());
+            break;
+        case 'search':
+            break;
+        
         default:
             break;
     }

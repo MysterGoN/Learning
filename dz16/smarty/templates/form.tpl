@@ -1,5 +1,5 @@
 <div class="col-md-4">
-    <form class="form-horizontal" method="post">  
+    <form id="ad_form" class="form-horizontal" method="post">  
         <div class="form-group">
             <div class="col-md-offset-5 col-md-7">
                 <input type="text" readonly hidden name="id" value="{$ad->get_id()}">
@@ -79,7 +79,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-5 col-md-7">
-                <input type="submit" class="btn btn-default" value="Подтвердить" name="submit">
+                <button type="submit" class="submit btn btn-success" name='submit'><span class="glyphicon glyphicon-ok"></span></button>
                 <button type="button" class="btn btn-default" name="reset" onclick="location.href='{$currentFile}'">Очистить</button>
             </div>
         </div>
