@@ -9,7 +9,7 @@
     }
     
     if (isset($_POST['submit'])) {
-        $ad = new ad(dataForm());      
+        $ad = new ad(dataForm());
         if ($errors->ad_error_check($ad, $smarty)) {
             $smarty->assign('ad', $ad);
         } else {

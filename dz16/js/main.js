@@ -48,6 +48,23 @@ function clear_form(response) {
             });
 }
 
+function add_to_form(response) {
+    $.each(response, function(key, value){
+                    var path = '#ad_form [name = ' + key + ']';
+                    if (key == 'private_id') {
+                        $(path + '[value = ' + value + ']').prop('checked', true);
+                    } else if (key == 'allow_mail_id') {
+                        $('#ad_form [name ^= ' + key + '][value = ' + value + ']').prop('checked', true);
+                    } else if (key == 'ad_category_id' || key == 'city_id') {
+                        $(path + ' [value = ' + value + ']').prop('selected', true);
+                    } else if (key == 'description') {
+                        $(path).html(value);
+                    } else {
+                        $(path).attr('value', value);
+                    }
+                });
+}
+
 $('document').ready(function(){
     $('a.delete').on('click', function(){
         var id = $(this).closest('tr').children('td:first').html();
@@ -93,32 +110,15 @@ $('document').ready(function(){
             data: data,
             success: function(response){
                 clear_form(response);
-                $.each(response, function(key, value){
-                    var path = '#ad_form [name = ' + key + ']';
-                    if (key == 'private_id') {
-                        $(path + '[value = ' + value + ']').prop('checked', true);
-                    } else if (key == 'allow_mail_id') {
-                        $('#ad_form [name ^= ' + key + '][value = ' + value + ']').prop('checked', true);
-                    } else if (key == 'ad_category_id' || key == 'city_id') {
-                        $(path + ' [value = ' + value + ']').prop('selected', true);
-                    } else if (key == 'description') {
-                        $(path).html(value);
-                    } else {
-                        $(path).attr('value', value);
-                    }
-                });
+                add_to_form(response);
             }  
         });
     });
     
     $('#submit').on('click', function(){
-        var id = $(this).closest('tr').children('td:first').html();
-        
-        var data = {'id': id};
         
         $.ajax({
-            url: 'ajax.php?action=edit',
-            data: data,
+            url: 'ajax.php?action=submit',
             success: function(response){
                 clear_form(response);
                 $.each(response, function(key, value){
