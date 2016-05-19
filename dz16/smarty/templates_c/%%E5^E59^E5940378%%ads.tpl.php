@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-05-12 16:15:28
+<?php /* Smarty version 2.6.25-dev, created on 2016-05-19 15:26:01
          compiled from ads.tpl */ ?>
 <div class="col-md-offset-1 col-md-5">
     <h2 class="sub-header">Объявления</h2>

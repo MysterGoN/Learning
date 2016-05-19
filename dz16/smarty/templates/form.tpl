@@ -79,10 +79,11 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-5 col-md-7">
-                <button type="submit" class="submit btn btn-success" name='submit'><span class="glyphicon glyphicon-ok"></span></button>
+                <button id="submit" type="button" class="submit btn btn-success" name='submit'><span class="glyphicon glyphicon-ok"></span></button>
                 <button type="button" class="btn btn-default" name="reset" onclick="location.href='{$currentFile}'">Очистить</button>
             </div>
         </div>
         
     </form>
+
 </div>

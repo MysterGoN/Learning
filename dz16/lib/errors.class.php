@@ -9,17 +9,19 @@
         public function ad_error_check(ad $ad, $smarty) {
             $vars = $ad->get_vars();
             $errorsNumber = 0;
+            $err = array();
             foreach ($this->errors as $value) {
                 if(empty($vars[$value])){
-                    $smarty->assign('error_' . $value, true);
+                    $err['fields'][] = $value;
                     $errorsNumber++;
                 }
             }
             if ($errorsNumber) {
-                $smarty->assign('error', 'Пожалуйста заполните поле');
-                return true;
+                $err['status'] = true;
             } else {
-                return false;
+                $err['status'] = false;
             }
+            $err['all_fields'] = $this->errors;
+            return $err;
         }
     }
