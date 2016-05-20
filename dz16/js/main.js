@@ -131,7 +131,7 @@ $('document').ready(function(){
                     if (block.html() == tdata.id) {
                         block.parent().after('\n\
                                     <tr>\n\
-                                        <td id="ad_id">'+tdata.id+'</td>\n\
+                                        <td class="ad_id">'+tdata.id+'</td>\n\
                                         <td>'+tdata.title+'</td>\n\
                                         <td>'+tdata.price+'</td>\n\
                                         <td>'+tdata.name+'</td>\n\
@@ -145,7 +145,7 @@ $('document').ready(function(){
                     }else {
                         $('table.table tbody').append('\n\
                                 <tr>\n\
-                                    <td id="ad_id">'+response.ad_id+'</td>\n\
+                                    <td class="ad_id">'+response.ad_id+'</td>\n\
                                     <td>'+tdata.title+'</td>\n\
                                     <td>'+tdata.price+'</td>\n\
                                     <td>'+tdata.name+'</td>\n\
