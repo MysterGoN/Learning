@@ -31,21 +31,13 @@ function notFound() {
     }
 }
 
-function clear_form(response) {
-    $.each(response, function(key, value){
-                var path = '#ad_form [name = ' + key + ']';
-                if (key == 'private_id') {
-                    $(path + ':checked').prop('checked', false);
-                } else if (key == 'allow_mail_id') {
-                    $('#ad_form [name ^= ' + key + ']:checked').prop('checked', false);
-                } else if (key == 'ad_category_id' || key == 'city_id') {
-                    $(path + ' :selected').prop('selected', false);
-                } else if (key == 'description') {
-                    $(path).html('');
-                } else {
-                    $(path).attr('value', '');
-                }
-            });
+function clear_form() {
+    $(':input','#ad_form')
+        .removeAttr('checked')
+        .removeAttr('selected')
+        .not(':button, :submit, :reset, :checkbox, :radio')
+        .val('');
+        
 }
 
 function add_to_form(response) {
@@ -58,15 +50,15 @@ function add_to_form(response) {
                     } else if (key == 'ad_category_id' || key == 'city_id') {
                         $(path + ' [value = ' + value + ']').prop('selected', true);
                     } else if (key == 'description') {
-                        $(path).html(value);
+                        $(path).val(value);
                     } else {
-                        $(path).attr('value', value);
+                        $(path).val(value);
                     }
                 });
 }
 
 $('document').ready(function(){
-    $('a.delete').on('click', function(){
+    $('table.table').delegate('a.delete', 'click', function(){
         var id = $(this).closest('tr').children('td:first').html();
         var tr = $(this).closest('tr');
         
@@ -100,7 +92,7 @@ $('document').ready(function(){
         dataType: 'json'
     });
     
-    $('a.edit').on('click', function() {
+    $('table.table').delegate('a.edit', 'click', function() {
         var id = $(this).closest('tr').children('td:first').html();
         
         var data = {'id': id};
@@ -109,9 +101,12 @@ $('document').ready(function(){
             url: 'ajax.php?action=edit',
             data: data,
             success: function(response){
-                clear_form(response);
+                clear_form();
                 add_to_form(response);
-            }  
+            },
+            error: function(response){
+                console.log(response);
+            }
         });
     });
     
@@ -123,8 +118,7 @@ $('document').ready(function(){
                 tdata[value.name] = value.value;
             } 
         });
-        console.log(data);
-        console.log(tdata);
+
         $.ajax({
             url: 'ajax.php?action=submit',
             data: data,
@@ -133,18 +127,36 @@ $('document').ready(function(){
                     $.each(response.all_fields, function(key, value) {
                         $('#ad_form [name = ' + value + '] + font').remove();
                     });
-                    $('table.table tbody').append('\n\
-                            <tr>\n\
-                                <td>'+tdata.id+'</td>\n\
-                                <td>'+tdata.title+'</td>\n\
-                                <td>'+tdata.price+'</td>\n\
-                                <td>'+tdata.name+'</td>\n\
-                                <td>\n\
-                                    <a class="edit btn btn-warning"><span class="glyphicon glyphicon-edit"></span></a>\n\
-                                    <a class="delete btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>\n\
-                                </td>\n\
-                            </tr>\n\
-                    ');
+                    block = $('table.table tr td.ad_id:contains(' + tdata.id + '):first');
+                    if (block.html() == tdata.id) {
+                        block.parent().after('\n\
+                                    <tr>\n\
+                                        <td id="ad_id">'+tdata.id+'</td>\n\
+                                        <td>'+tdata.title+'</td>\n\
+                                        <td>'+tdata.price+'</td>\n\
+                                        <td>'+tdata.name+'</td>\n\
+                                        <td>\n\
+                                            <a class="edit btn btn-warning"><span class="glyphicon glyphicon-edit"></span></a>\n\
+                                            <a class="delete btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>\n\
+                                        </td>\n\
+                                    </tr>\n\
+                            ');
+                        block.parent().remove();
+                    }else {
+                        $('table.table tbody').append('\n\
+                                <tr>\n\
+                                    <td id="ad_id">'+response.ad_id+'</td>\n\
+                                    <td>'+tdata.title+'</td>\n\
+                                    <td>'+tdata.price+'</td>\n\
+                                    <td>'+tdata.name+'</td>\n\
+                                    <td>\n\
+                                        <a class="edit btn btn-warning"><span class="glyphicon glyphicon-edit"></span></a>\n\
+                                        <a class="delete btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>\n\
+                                    </td>\n\
+                                </tr>\n\
+                        ');
+                    }
+                    
                 } else if(response.status == 'error') {
                     $.each(response.all_fields, function(key, value) {
                         $('#ad_form [name = ' + value + '] + font').remove();
@@ -153,9 +165,8 @@ $('document').ready(function(){
                         $('#ad_form [name = ' + value + ']').after('<font color="red">'+response.message+'</font>');
                     });
                 }
-            }  
+                clear_form();
+            }
         });
     });
-        
-    
-});
+}); 

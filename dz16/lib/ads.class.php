@@ -35,6 +35,10 @@
             return $this->ads[$id];
         }
         
+        public function getLastAd() {
+            return end($this->ads);
+        }
+        
         public function getAdsFromDB($search = '') {
             global $db;
             $result = $db->select('select * from ads where title like ?', '%' . $search . '%');

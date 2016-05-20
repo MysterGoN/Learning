@@ -25,6 +25,9 @@
                 $result['message'] = "Товар успешно добавлен/изменен!";
                 $result['all_fields'] = $err['all_fields'];
                 $ads->addAd($ad);
+                $ads->getAdsFromDB();
+                $tmpad = $ads->getLastAd();
+                $result['ad_id'] = $tmpad->get_id();
                 echo json_encode($result);
             } 
             break;
