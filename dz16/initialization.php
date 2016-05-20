@@ -45,5 +45,5 @@
 
     
     $ads = ads::instance();
-    $ads->getAdsFromDB($_SESSION['search']);
+    $ads->getAdsFromDB();
     $ads->adListPreparation();

@@ -84,7 +84,17 @@ $('document').ready(function(){
         });
     });
     
-
+    $('#search_field').on('input', function(){
+        var s = $(this).val();
+        $('table.table tr td.ad_titl:not(:contains(' + s + '))').parent().hide();
+        $('table.table tr td.ad_titl:contains(' + s + ')').parent().show();
+    });
+    
+    $('#search_button').on('click', function(){
+        var s = $(this).prev().val();
+        $('table.table tr td.ad_titl:not(:contains(' + s + '))').parent().hide();
+        $('table.table tr td.ad_titl:contains(' + s + ')').parent().show();
+    });
     
     $.ajaxSetup({
         type: 'POST',
@@ -132,7 +142,7 @@ $('document').ready(function(){
                         block.parent().after('\n\
                                     <tr>\n\
                                         <td class="ad_id">'+tdata.id+'</td>\n\
-                                        <td>'+tdata.title+'</td>\n\
+                                        <td class="ad_titl">'+tdata.title+'</td>\n\
                                         <td>'+tdata.price+'</td>\n\
                                         <td>'+tdata.name+'</td>\n\
                                         <td>\n\
@@ -146,7 +156,7 @@ $('document').ready(function(){
                         $('table.table tbody').append('\n\
                                 <tr>\n\
                                     <td class="ad_id">'+response.ad_id+'</td>\n\
-                                    <td>'+tdata.title+'</td>\n\
+                                    <td class="ad_titl">'+tdata.title+'</td>\n\
                                     <td>'+tdata.price+'</td>\n\
                                     <td>'+tdata.name+'</td>\n\
                                     <td>\n\
@@ -156,7 +166,7 @@ $('document').ready(function(){
                                 </tr>\n\
                         ');
                     }
-                    
+                    clear_form();
                 } else if(response.status == 'error') {
                     $.each(response.all_fields, function(key, value) {
                         $('#ad_form [name = ' + value + '] + font').remove();
@@ -165,7 +175,7 @@ $('document').ready(function(){
                         $('#ad_form [name = ' + value + ']').after('<font color="red">'+response.message+'</font>');
                     });
                 }
-                clear_form();
+                
             }
         });
     });

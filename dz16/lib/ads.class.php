@@ -39,9 +39,9 @@
             return end($this->ads);
         }
         
-        public function getAdsFromDB($search = '') {
+        public function getAdsFromDB() {
             global $db;
-            $result = $db->select('select * from ads where title like ?', '%' . $search . '%');
+            $result = $db->select('select * from ads');
             tableLogger($result);
             foreach ($result as $value) {
                 $ad = new ad($value);

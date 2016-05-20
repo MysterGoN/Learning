@@ -1,6 +1,6 @@
 <tr>
     <td class="ad_id">{$ad->get_id()}</td>
-    <td>{$ad->get_title()}</td>
+    <td class="ad_titl">{$ad->get_title()}</td>
     <td>{$ad->get_price()}</td>
     <td>{$ad->get_name()}</td>
     <td>

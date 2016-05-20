@@ -35,8 +35,6 @@
             $ad = $ads->getAd($_POST['id']);
             echo json_encode($ad->get_vars());
             break;
-        case 'search':
-            break;
         case 'form':
             $ad = new ad();
             echo json_encode($ad);
