@@ -1,9 +1,9 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-05-20 15:12:43
+<?php /* Smarty version 2.6.25-dev, created on 2016-05-20 21:14:23
          compiled from ads_row.tpl */ ?>
 <tr>
     <td class="ad_id"><?php echo $this->_tpl_vars['ad']->get_id(); ?>
 </td>
-    <td><?php echo $this->_tpl_vars['ad']->get_title(); ?>
+    <td class="ad_titl"><?php echo $this->_tpl_vars['ad']->get_title(); ?>
 </td>
     <td><?php echo $this->_tpl_vars['ad']->get_price(); ?>
 </td>

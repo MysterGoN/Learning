@@ -49,12 +49,62 @@ function add_to_form(response) {
                         $('#ad_form [name ^= ' + key + '][value = ' + value + ']').prop('checked', true);
                     } else if (key == 'ad_category_id' || key == 'city_id') {
                         $(path + ' [value = ' + value + ']').prop('selected', true);
-                    } else if (key == 'description') {
-                        $(path).val(value);
                     } else {
                         $(path).val(value);
                     }
                 });
+}
+
+function showResponse(response) {
+    var data = $('#ad_form').serializeArray();
+    var tdata = [];
+    $.each(data, function(key, value){
+        if (value.name == 'name' || value.name == 'id' || value.name == 'price' || value.name == 'title') {
+            tdata[value.name] = value.value;
+        } 
+    });
+    
+    if (response.status == 'success') {
+        $.each(response.all_fields, function(key, value) {
+            $('#ad_form [name = ' + value + '] + font').remove();
+        });
+        block = $('table.table tr td.ad_id:contains(' + tdata.id + '):first');
+        if (block.html() == tdata.id) {
+            block.parent().after('\n\
+                        <tr>\n\
+                            <td class="ad_id">'+tdata.id+'</td>\n\
+                            <td class="ad_titl">'+tdata.title+'</td>\n\
+                            <td>'+tdata.price+'</td>\n\
+                            <td>'+tdata.name+'</td>\n\
+                            <td>\n\
+                                <a class="edit btn btn-warning"><span class="glyphicon glyphicon-edit"></span></a>\n\
+                                <a class="delete btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>\n\
+                            </td>\n\
+                        </tr>\n\
+                ');
+            block.parent().remove();
+        }else {
+            $('table.table tbody').append('\n\
+                    <tr>\n\
+                        <td class="ad_id">'+response.ad_id+'</td>\n\
+                        <td class="ad_titl">'+tdata.title+'</td>\n\
+                        <td>'+tdata.price+'</td>\n\
+                        <td>'+tdata.name+'</td>\n\
+                        <td>\n\
+                            <a class="edit btn btn-warning"><span class="glyphicon glyphicon-edit"></span></a>\n\
+                            <a class="delete btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>\n\
+                        </td>\n\
+                    </tr>\n\
+            ');
+        }
+    } else if(response.status == 'error') {
+        $.each(response.all_fields, function(key, value) {
+            $('#ad_form [name = ' + value + '] + font').remove();
+        });
+        $.each(response.fields, function(key, value) {
+            $('#ad_form [name = ' + value + ']').after('<font color="red">'+response.message+'</font>');
+        });
+    }
 }
 
 $('document').ready(function(){
@@ -120,63 +170,13 @@ $('document').ready(function(){
         });
     });
     
-    $('#submit').on('click', function(){
-        var data = $('#ad_form').serializeArray();
-        var tdata = [];
-        $.each(data, function(key, value){
-            if (value.name == 'name' || value.name == 'id' || value.name == 'price' || value.name == 'title') {
-                tdata[value.name] = value.value;
-            } 
-        });
-
-        $.ajax({
-            url: 'ajax.php?action=submit',
-            data: data,
-            success: function(response){
-                if (response.status == 'success') {
-                    $.each(response.all_fields, function(key, value) {
-                        $('#ad_form [name = ' + value + '] + font').remove();
-                    });
-                    block = $('table.table tr td.ad_id:contains(' + tdata.id + '):first');
-                    if (block.html() == tdata.id) {
-                        block.parent().after('\n\
-                                    <tr>\n\
-                                        <td class="ad_id">'+tdata.id+'</td>\n\
-                                        <td class="ad_titl">'+tdata.title+'</td>\n\
-                                        <td>'+tdata.price+'</td>\n\
-                                        <td>'+tdata.name+'</td>\n\
-                                        <td>\n\
-                                            <a class="edit btn btn-warning"><span class="glyphicon glyphicon-edit"></span></a>\n\
-                                            <a class="delete btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>\n\
-                                        </td>\n\
-                                    </tr>\n\
-                            ');
-                        block.parent().remove();
-                    }else {
-                        $('table.table tbody').append('\n\
-                                <tr>\n\
-                                    <td class="ad_id">'+response.ad_id+'</td>\n\
-                                    <td class="ad_titl">'+tdata.title+'</td>\n\
-                                    <td>'+tdata.price+'</td>\n\
-                                    <td>'+tdata.name+'</td>\n\
-                                    <td>\n\
-                                        <a class="edit btn btn-warning"><span class="glyphicon glyphicon-edit"></span></a>\n\
-                                        <a class="delete btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>\n\
-                                    </td>\n\
-                                </tr>\n\
-                        ');
-                    }
-                    clear_form();
-                } else if(response.status == 'error') {
-                    $.each(response.all_fields, function(key, value) {
-                        $('#ad_form [name = ' + value + '] + font').remove();
-                    });
-                    $.each(response.fields, function(key, value) {
-                        $('#ad_form [name = ' + value + ']').after('<font color="red">'+response.message+'</font>');
-                    });
-                }
-                
-            }
-        });
-    });
+    var options = {
+        success:   showResponse,
+        url:       'ajax.php?action=submit',
+        dataType:  'json',
+        clearForm: true,
+        resetForm: true
+    }; 
+    
+    $('#ad_form').ajaxForm(options);
 }); 

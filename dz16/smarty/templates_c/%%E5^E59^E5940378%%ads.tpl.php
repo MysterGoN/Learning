@@ -1,11 +1,10 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-05-19 15:26:01
+<?php /* Smarty version 2.6.25-dev, created on 2016-05-20 21:14:23
          compiled from ads.tpl */ ?>
 <div class="col-md-offset-1 col-md-5">
     <h2 class="sub-header">Объявления</h2>
     <form class="form-inline" method="post">
-            <input type="text" class="form-control" name="text" value='<?php echo $this->_tpl_vars['search']; ?>
-'>
-            <input type="submit" class="btn btn-default" name="search" value="search">
+            <input type="text" id="search_field" class="form-control" name="text">
+            <button type="button" id="search_button" class="btn btn-info" name="search" value="search"><span class="glyphicon glyphicon-search"></span></button>
     </form>
     <div class="table-condensed">
         <table class="table table-condensed">

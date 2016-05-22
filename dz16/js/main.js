@@ -49,8 +49,6 @@ function add_to_form(response) {
                         $('#ad_form [name ^= ' + key + '][value = ' + value + ']').prop('checked', true);
                     } else if (key == 'ad_category_id' || key == 'city_id') {
                         $(path + ' [value = ' + value + ']').prop('selected', true);
-                    } else if (key == 'description') {
-                        $(path).val(value);
                     } else {
                         $(path).val(value);
                     }
