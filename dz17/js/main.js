@@ -56,6 +56,7 @@ function add_to_form(response) {
 }
 
 function showResponse(response) {
+    console.log(response);
     var data = $('#ad_form').serializeArray();
     var tdata = [];
     $.each(data, function(key, value){
@@ -97,6 +98,7 @@ function showResponse(response) {
                     </tr>\n\
             ');
         }
+        clear_form();
     } else if(response.status == 'error') {
         $.each(response.all_fields, function(key, value) {
             $('#ad_form [name = ' + value + '] + font').remove();
@@ -174,7 +176,6 @@ $('document').ready(function(){
         success:   showResponse,
         url:       'ajax.php?action=submit',
         dataType:  'json',
-        clearForm: true,
         resetForm: true
     }; 
     
