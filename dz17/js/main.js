@@ -108,7 +108,7 @@ function showResponse(response) {
             $('#ad_form [name = ' + value + '] + font').remove();
         });
         $.each(response.fields, function(key, value) {
-            $('#ad_form [name = ' + value + ']').after('<font color="red">'+response.message+'</font>');
+            $('#ad_form [name = ' + value + ']').after('<font class="form_error_message" color="red">'+response.message+'</font>');
         });
     }
 }
@@ -134,6 +134,7 @@ $('document').ready(function(){
                 });
                 if ($('#ad_form [name = id]').val() == id) {
                     clear_form();
+                    $('.form_error_message').remove();
                 }
             } else if (response.status == 'error'){
                 notice.addAlert(id, 'danger');
@@ -144,6 +145,7 @@ $('document').ready(function(){
     });
     
     $('#clear').on('click', function() {
+        $('.form_error_message').remove();
         clear_form();
     });
     
@@ -166,6 +168,7 @@ $('document').ready(function(){
     });
     
     $('table.table').delegate('a.edit', 'click', function() {
+        $('.form_error_message').remove();
         var id = $(this).closest('tr').children('td:first').html();
         
         var data = {'id': id};
