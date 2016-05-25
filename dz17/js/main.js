@@ -27,7 +27,9 @@ function Notifications() {
 
 function notFound() {
     if(!$('#tbody_list').children('tr').length) {
-        $('#tbody_list').append('<tr colspan="5"><td>Объявлений не найдено</td></tr>');
+        $('#tbody_list').append('<tr id="not_found" colspan="5"><td>Объявлений не найдено</td></tr>');
+    } else {
+        $('#not_found').remove();
     }
 }
 
@@ -68,6 +70,9 @@ function showResponse(response) {
         $.each(response.all_fields, function(key, value) {
             $('#ad_form [name = ' + value + '] + font').remove();
         });
+        if ($('*').is('#not_found')) {
+            $('#not_found').remove();
+        }
         block = $('table.table tr td.ad_id:contains(' + tdata.id + '):first');
         if (block.html() == tdata.id) {
             block.parent().after('\n\
