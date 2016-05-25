@@ -80,7 +80,7 @@
         <div class="form-group">
             <div class="col-md-offset-5 col-md-7">
                 <button type="submit" id="submit" type="button" class="submit btn btn-success" name='submit'><span class="glyphicon glyphicon-ok"></span></button>
-                <button type="button" class="btn btn-default" name="reset" onclick="clear_form();">Очистить</button>
+                <button type="button" id="clear" class="btn btn-default" name="reset">Очистить</button>
             </div>
         </div>
         

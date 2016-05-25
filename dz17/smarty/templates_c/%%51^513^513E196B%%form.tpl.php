@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-05-24 10:35:47
+<?php /* Smarty version 2.6.25-dev, created on 2016-05-25 13:34:23
          compiled from form.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios', 'form.tpl', 11, false),array('function', 'html_checkboxes', 'form.tpl', 31, false),array('function', 'html_options', 'form.tpl', 47, false),)), $this); ?>
@@ -98,7 +98,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios
         <div class="form-group">
             <div class="col-md-offset-5 col-md-7">
                 <button type="submit" id="submit" type="button" class="submit btn btn-success" name='submit'><span class="glyphicon glyphicon-ok"></span></button>
-                <button type="button" class="btn btn-default" name="reset" onclick="clear_form();">Очистить</button>
+                <button type="button" id="clear" class="btn btn-default" name="reset">Очистить</button>
             </div>
         </div>
         

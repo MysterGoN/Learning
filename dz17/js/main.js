@@ -56,7 +56,6 @@ function add_to_form(response) {
 }
 
 function showResponse(response) {
-    console.log(response);
     var data = $('#ad_form').serializeArray();
     var tdata = [];
     $.each(data, function(key, value){
@@ -128,12 +127,19 @@ $('document').ready(function(){
                     $(this).remove();
                     notFound();
                 });
+                if ($('#ad_form [name = id]').val() == id) {
+                    clear_form();
+                }
             } else if (response.status == 'error'){
                 notice.addAlert(id, 'danger');
             }
             notice.addMessage(id, response.message);
             notice.Run(id);
         });
+    });
+    
+    $('#clear').on('click', function() {
+        clear_form();
     });
     
     $('#search_field').on('input', function(){
@@ -165,9 +171,6 @@ $('document').ready(function(){
             success: function(response){
                 clear_form();
                 add_to_form(response);
-            },
-            error: function(response){
-                console.log(response);
             }
         });
     });
