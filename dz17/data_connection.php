@@ -2,4 +2,4 @@
 $server_name = 'localhost';
 $user_name = 'root';
 $password = '';
-$database = 'dz16';
+$database = 'dz17';

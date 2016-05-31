@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-04-29 00:09:25
+<?php /* Smarty version 2.6.25-dev, created on 2016-05-29 17:30:33
          compiled from form.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios', 'form.tpl', 11, false),array('function', 'html_checkboxes', 'form.tpl', 31, false),array('function', 'html_options', 'form.tpl', 47, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios', 'form.tpl', 11, false),array('function', 'html_checkboxes', 'form.tpl', 32, false),array('function', 'html_options', 'form.tpl', 48, false),)), $this); ?>
 <div class="col-md-4">
     <form class="form-horizontal" method="post">  
         <div class="form-group">
@@ -32,6 +32,8 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios
             <div class="col-md-7">
                 <input type="text" class="form-control" value="<?php echo $this->_tpl_vars['ad']->get_email(); ?>
 " name="email" id="email">
+                <?php if ($this->_tpl_vars['error_email']): ?><font color="red"><?php echo $this->_tpl_vars['error']; ?>
+</font><?php endif; ?>
             </div>
         </div>
         <div class="form-group">
